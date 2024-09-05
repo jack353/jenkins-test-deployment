@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-test-deployment
+
+spec:
+  template:
+    metadata:
+      name: jenkins-test
+      labels:
+        app: jenkins-test
+        tier: frontend
+    spec:
+      containers:
+        - name: flask-hello
+          image: jack353/jenkins-test-flask:latest
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-hello
+      tier: frontend
